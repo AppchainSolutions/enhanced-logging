@@ -5,6 +5,7 @@ namespace Esalud\EnhancedLogging\Traits;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
 
+<<<<<<< HEAD
 /**
  * Trait ContextualLogging
  * 
@@ -12,16 +13,21 @@ use Illuminate\Support\Str;
  * 
  * @package Esalud\EnhancedLogging\Traits
  */
+=======
+>>>>>>> c5d71c4304d00543f0d003c6a570092d53769700
 trait ContextualLogging
 {
     /**
      * Log con contexto detallado y seguro
+<<<<<<< HEAD
      * 
      * @param string $level Nivel de log (debug, info, warning, error, critical)
      * @param string $message Mensaje de log
      * @param array $context Contexto adicional
      * @param bool $sanitize Indica si se deben sanitizar datos sensibles
      * @return void
+=======
+>>>>>>> c5d71c4304d00543f0d003c6a570092d53769700
      */
     protected function contextLog(
         string $level, 
@@ -33,6 +39,7 @@ trait ContextualLogging
         $context['trace_id'] = Str::uuid();
         $context['ip'] = request()->ip();
         
+<<<<<<< HEAD
         // Agregar información de clase y método si está habilitado
         if (config('enhanced-logging.context.include_class', false)) {
             $backtrace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 
@@ -51,24 +58,36 @@ trait ContextualLogging
         }
         
         // Sanitizar datos sensibles
+=======
+>>>>>>> c5d71c4304d00543f0d003c6a570092d53769700
         if ($sanitize) {
             $context = $this->sanitizeContext($context);
         }
 
+<<<<<<< HEAD
         // Registrar log con contexto
+=======
+>>>>>>> c5d71c4304d00543f0d003c6a570092d53769700
         Log::log($level, $message, $context);
     }
 
     /**
      * Sanitizar datos sensibles
+<<<<<<< HEAD
      * 
      * @param array $context Contexto a sanitizar
      * @return array Contexto sanitizado
+=======
+>>>>>>> c5d71c4304d00543f0d003c6a570092d53769700
      */
     private function sanitizeContext(array $context): array
     {
         $sensitiveFields = config('enhanced-logging.sensitive_fields', [
+<<<<<<< HEAD
             'password', 'token', 'secret', 'api_key', 'credit_card'
+=======
+            'password', 'token', 'secret'
+>>>>>>> c5d71c4304d00543f0d003c6a570092d53769700
         ]);
 
         foreach ($sensitiveFields as $field) {
@@ -82,9 +101,12 @@ trait ContextualLogging
 
     /**
      * Log de depuración con contexto
+<<<<<<< HEAD
      * 
      * @param string $message Mensaje de log
      * @param array $context Contexto adicional
+=======
+>>>>>>> c5d71c4304d00543f0d003c6a570092d53769700
      */
     protected function debugLog(string $message, array $context = [])
     {
@@ -92,6 +114,7 @@ trait ContextualLogging
     }
 
     /**
+<<<<<<< HEAD
      * Log de información con contexto
      * 
      * @param string $message Mensaje de log
@@ -118,11 +141,15 @@ trait ContextualLogging
      * 
      * @param string $message Mensaje de log
      * @param array $context Contexto adicional
+=======
+     * Log de error con contexto
+>>>>>>> c5d71c4304d00543f0d003c6a570092d53769700
      */
     protected function errorLog(string $message, array $context = [])
     {
         $this->contextLog('error', $message, $context);
     }
+<<<<<<< HEAD
 
     /**
      * Log crítico con contexto
@@ -134,4 +161,6 @@ trait ContextualLogging
     {
         $this->contextLog('critical', $message, $context);
     }
+=======
+>>>>>>> c5d71c4304d00543f0d003c6a570092d53769700
 }

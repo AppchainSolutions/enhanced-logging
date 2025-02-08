@@ -1,51 +1,41 @@
-# Enhanced Logging para Laravel
+# Enhanced Logging
 
-## 🚀 Descripción
+## Descripción
+Paquete de logging avanzado para Laravel con características de seguridad y contexto mejoradas.
 
-`esalud/enhanced-logging` es un paquete de logging avanzado para Laravel que proporciona:
+## Características
 
-- 🔒 Redacción automática de campos sensibles
-- 📊 Logging contextual con información de IP y trace ID
-- 🛡️ Formato de log personalizado
-- 🔧 Configuración flexible
-- 📝 Soporte para múltiples canales de log
+### Contexto Detallado
+- Inclusión automática de información de clase y método
+- Generación de UUID único por log
+- Captura de dirección IP del request
 
-## 📦 Instalación
+### Seguridad
+- Sanitización de campos sensibles
+- Redacción automática de información confidencial
+- Configuración flexible de campos sensibles
 
-### Requisitos
+### Niveles de Log
+- Debug
+- Info
+- Warning
+- Error
+- Critical
 
-- PHP 8.1+
-- Laravel 11.x
-
-### Instalación via Composer
+## Instalación
 
 ```bash
 composer require esalud/enhanced-logging
 ```
 
-### Publicar Configuración
+## Configuración
 
-```bash
-php artisan vendor:publish --provider="Esalud\EnhancedLogging\Providers\EnhancedLoggingServiceProvider"
-```
-
-## 🛠️ Configuración
-
-### Archivo `.env`
-
-```env
-# Habilitar modo de depuración
-ENHANCED_LOGGING_DEBUG=true
-```
-
-### Archivo `config/enhanced-logging.php`
+En `config/enhanced-logging.php`:
 
 ```php
 return [
-    // Habilitar modo de depuración
-    'debug' => env('ENHANCED_LOGGING_DEBUG', false),
-
-    // Campos sensibles a redactar
+    'debug' => env('APP_DEBUG', false),
+    
     'sensitive_fields' => [
         'password', 
         'token', 
@@ -53,24 +43,6 @@ return [
         'api_key'
     ],
 
-    // Máximo número de archivos de log
-    'max_log_files' => 5,
-
-    // Tamaño máximo de archivo de log (en bytes)
-    'max_log_file_size' => 5 * 1024 * 1024, // 5MB
-
-    // Canales de log adicionales
-    'channels' => [
-        'security' => [
-            'driver' => 'single',
-            'path' => storage_path('logs/security.log'),
-        ],
-        'activation' => [
-            'driver' => 'single', 
-            'path' => storage_path('logs/activation.log'),
-        ]
-    ],
-    
     'context' => [
         'include_class' => true,
         'include_method' => true,
@@ -80,9 +52,7 @@ return [
 ];
 ```
 
-## 🔍 Uso Básico
-
-### Usando el Trait de Logging
+## Uso
 
 ```php
 use Esalud\EnhancedLogging\Traits\ContextualLogging;
@@ -91,69 +61,21 @@ class MiClase
 {
     use ContextualLogging;
 
-    public function metodo()
+    public function miMetodo()
     {
-        // Log de depuración con redacción automática
         $this->debugLog('Mensaje de depuración', [
-            'user_id' => $user->id,
-            'password' => 'secreto' // Se redactará automáticamente
+            'parametro1' => 'valor1'
         ]);
 
-        // Log de error con contexto
         $this->errorLog('Ocurrió un error', [
-            'exception' => $exception->getMessage()
+            'detalles' => 'Información del error'
         ]);
     }
 }
 ```
 
-### Métodos de Logging Disponibles
+## Contribuciones
+Por favor, lea CONTRIBUTING.md para detalles sobre nuestro código de conducta y proceso de envío de pull requests.
 
-- `debugLog()`: Registra mensajes de depuración
-- `errorLog()`: Registra mensajes de error
-- `contextLog()`: Método genérico para logging personalizado
-
-## 🔒 Características de Seguridad
-
-- Redacción automática de campos sensibles
-- Registro de IP y trace ID
-- Formato de log que no expone información confidencial
-
-## 📈 Personalización Avanzada
-
-### Campos Sensibles Personalizados
-
-Puedes agregar campos sensibles en `config/enhanced-logging.php`:
-
-```php
-'sensitive_fields' => [
-    'password', 
-    'token', 
-    'secret', 
-    'api_key',
-    'mi_campo_sensible'
-]
-```
-
-## 🚧 Mejoras Futuras
-
-- [ ] Soporte para logging asíncrono
-- [ ] Integración con servicios de monitoreo
-- [ ] Más opciones de formateo de logs
-- [ ] Soporte para logging distribuido
-
-## 🤝 Contribuciones
-
-Las contribuciones son bienvenidas. Por favor, lea CONTRIBUTING.md para detalles sobre nuestro código de conducta y proceso de envío de pull requests.
-
-## 📄 Licencia
-
-MIT License
-
-## 🛡️ Seguridad
-
-Si encuentras una vulnerabilidad de seguridad, por favor envía un email a [tu-email@example.com].
-
-## 📞 Soporte
-
-Para soporte, abre un issue en el repositorio de GitHub o contáctanos por email.
+## Licencia
+Este proyecto está bajo la Licencia MIT - vea LICENSE.md para más detalles.
