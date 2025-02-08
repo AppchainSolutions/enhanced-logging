@@ -1,0 +1,31 @@
+# Archivos de Composer
+/vendor/
+composer.lock
+
+# Archivos de pruebas
+/coverage/
+/coverage-report/
+coverage.xml
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# IDEs y editores
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Archivos de logs
+*.log
+
+# Archivos de entorno
+.env
+.env.testing
+
+# Caché de PHP
+*.cache
+
+# Archivos de PHPUnit
+.phpunit.result.cache
