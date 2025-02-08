@@ -1,0 +1,41 @@
+{
+    "name": "esalud/enhanced-logging",
+    "description": "Paquete de logging avanzado para Laravel",
+    "type": "library",
+    "require": {
+        "php": "^8.1",
+        "laravel/framework": "^11.0",
+        "monolog/monolog": "^3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "orchestra/testbench": "^8.0",
+        "mockery/mockery": "^1.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Esalud\\EnhancedLogging\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Esalud\\EnhancedLogging\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-html coverage-report"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Esalud\\EnhancedLogging\\Providers\\EnhancedLoggingServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
