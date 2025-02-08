@@ -145,7 +145,7 @@ MIT License
 
 ## 🛡️ Seguridad
 
-Si encuentras una vulnerabilidad de seguridad, por favor envía un email a [tu-email@example.com].
+Si encuentras una vulnerabilidad de seguridad, por favor envía un email a [omar.ahumadag@gmail.com].
 
 ## 📞 Soporte
 
